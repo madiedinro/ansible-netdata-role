@@ -35,16 +35,11 @@
     template:
      src: '{{item}}.j2'
      dest: '{{ netdata_install_dir }}/netdata/etc/netdata/{{item}}'
+     force: yes
     with_items:
       - netdata.conf
       - stream.conf
     become: yes
-
-  - name: Creating stream config
-    template:
-     src: netdata.conf.j2
-     dest: '{{ netdata_install_dir }}/netdata/etc/netdata/netdata.conf'
-    when: netdata_stream == True or netdata_backend == True
 
   - meta: flush_handlers
 

@@ -45,7 +45,7 @@
 
   - name: Copy service file
     command: cp {{ drn_install_dir }}/system/netdata.service /etc/systemd/system/netdata.service
-   notify: start/restart and enable
+    notify: start/restart and enable
 
   # - name: start and enable
   #   systemd:

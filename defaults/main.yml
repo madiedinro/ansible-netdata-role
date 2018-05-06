@@ -1,23 +1,23 @@
-netdata_binary: /usr/sbin/netdata
-netdata_install_dir: /opt/netdata
-netdata_version: master
-netdata_hostname: '{{inventory_hostname_short|default(inventory_hostname)}}'
+drn_backend:
+  enable: false
+  host: 127.0.0.1
+  type: graphite
+  prefix: nd
 
-netdata_backend: false
-netdata_backend_type: graphite
-netdata_stream_host: 127.0.0.1
-netdata_stream_port: 19999
-netdata_backend_prefix: nd
-netdata_backend_api_key: none
-netdata_backend_dest: 127.0.0.1
+drn_stream:
+  enable: false
+  host: 127.0.0.1
+  port: 19999
+  api_key: uuid_api_key
 
-netdata_stream: false
-netdata_stream_api_key: none
-netdata_stream_dest: localhost
+drn_allow:
+  connections_from: '127.0.0.*'
+  streaming_from: '127.0.0.*'
+  dashboard_from: '127.0.0.*'
+  badges_from: '127.0.0.*'
+  conf_from: '127.0.0.*'
 
-netdata_allow_connections_from: '*'
-netdata_allow_streaming_from: '*'
-netdata_allow_dashboard_from: '*'
-netdata_allow_badges_from: '*'
-netdata_allow_conf_from: localhost
-
+drn_binary: /usr/sbin/netdata
+drn_install_dir: /opt/netdata
+drn_version: master
+drn_hostname: '{{inventory_hostname_short|default(inventory_hostname)}}'

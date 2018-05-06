@@ -2,12 +2,12 @@
   systemd:
     name: netdata
     state: stopped
-  when: netdata_present.stat.exists == True
+  when: drn_present.stat.exists == True
 
-- name: start and enable
+- name: start/restart and enable
   systemd:
     name: netdata
-    state: started
+    state: restarted
     enabled: yes
     daemon_reload: yes
 

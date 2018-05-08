@@ -1,8 +1,8 @@
 drn_backend:
   enable: false
   host: 127.0.0.1
-  type: graphite
-  prefix: nd
+  type: opentsdb
+  prefix: netdata
 
 drn_stream:
   enable: false

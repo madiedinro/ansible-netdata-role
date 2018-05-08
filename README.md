@@ -12,7 +12,7 @@ Add to ansible playbook following:
         drn_backend:
           enable: false
           host: 127.0.0.1:4242
-          type: graphite
+          type: opentsdb
           prefix: netdata
 
         drn_stream:

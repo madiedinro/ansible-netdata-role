@@ -48,9 +48,8 @@
     notify: start/restart and enable
 
   # - name: start and enable
-  #   systemd:
+  #   service:
   #     name: netdata
   #     state: restarted
-  #     daemon_reload: yes
   #     enabled: yes
 

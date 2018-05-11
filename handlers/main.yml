@@ -5,9 +5,7 @@
   when: drn_present.stat.exists == True
 
 - name: start/restart and enable
-  systemd:
+  service:
     name: netdata
     state: restarted
     enabled: yes
-    daemon_reload: yes
-

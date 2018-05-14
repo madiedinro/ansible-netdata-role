@@ -4,7 +4,7 @@
     state: stopped
   when: drn_present.stat.exists == True
 
-- name: start/restart and enable
+- name: start/restart netdata
   service:
     name: netdata
     state: restarted

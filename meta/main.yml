@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Dmitry Rodin
+  description: Netdata ansible role. Can be configuread as receiving or sending stream. Alse possible to define backend
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - vivid
+    - zesty
+  - name: Debian
+    versions:
+    - jessie
+    - wheezy
+  galaxy_tags:
+    - networking
+dependencies: []

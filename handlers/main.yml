@@ -1,11 +1,11 @@
 - name: stop service
   systemd:
-    name: netdata
+    name: "{{drn_service}}"
     state: stopped
   when: drn_present.stat.exists == True
 
 - name: start/restart netdata
   service:
-    name: netdata
+    name: "{{drn_service}}"
     state: restarted
     enabled: yes

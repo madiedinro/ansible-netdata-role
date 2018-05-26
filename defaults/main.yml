@@ -1,3 +1,4 @@
+drn_service: netdata
 drn_backend:
   enable: false
   host: 127.0.0.1
@@ -10,7 +11,9 @@ drn_stream:
   port: 19999
   api_key: uuid_api_key
 
-drn_allow:
+drn_allow: {}
+
+drn_allow_default:
   connections_from: '127.0.0.*'
   streaming_from: '127.0.0.*'
   dashboard_from: '127.0.0.*'

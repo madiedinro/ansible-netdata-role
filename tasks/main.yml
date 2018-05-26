@@ -41,15 +41,24 @@
       - stream.conf
     become: yes
 
-  - meta: flush_handlers
+  # - meta: flush_handlers
 
   - name: Copy service file
-    command: cp {{ drn_install_dir }}/system/netdata.service /etc/systemd/system/netdata.service
-    notify: start/restart netdata
+    command: cp {{ drn_install_dir }}/system/{{drn_service}}.service /etc/systemd/system/{{drn_service}}.service
+    # notify: start/restart netdata
 
-  # - name: start and enable
-  #   service:
-  #     name: netdata
-  #     state: restarted
-  #     enabled: yes
+  - block:
+      - service:
+          name: "{{drn_service}}"
+          state: restarted
+          enabled: yes
+        when: ansible_service_mgr == 'upstart'
+      - systemd:
+          state: restarted
+          daemon_reload: yes
+          enabled: yes
+          name: "{{ drn_service }}"
+        when: ansible_service_mgr == 'systemd'
+
+
 

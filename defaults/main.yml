@@ -1,3 +1,4 @@
+drn_bind_to: "*"
 drn_service: netdata
 drn_backend:
   enable: false
@@ -14,11 +15,11 @@ drn_stream:
 drn_allow: {}
 
 drn_allow_default:
-  connections_from: '127.0.0.*'
-  streaming_from: '127.0.0.*'
-  dashboard_from: '127.0.0.*'
-  badges_from: '127.0.0.*'
-  conf_from: '127.0.0.*'
+  connections_from: 'localhost 127.*'
+  streaming_from: 'localhost 127.*'
+  dashboard_from: 'localhost 127.*'
+  badges_from: 'localhost 127.*'
+  conf_from: 'localhost 127.*'
 
 drn_binary: /usr/sbin/netdata
 drn_install_dir: /opt/netdata

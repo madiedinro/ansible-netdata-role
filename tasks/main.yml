@@ -13,14 +13,13 @@
 
   - name: Install package dependencies
     apt:
-      name: "{{ item }}"
-    with_items: "{{ drn_deps }}"
+      name: "{{ drn_deps }}"
     when: drn_present.stat.exists == False
 
   - name: Fetching netdata from git
     git:
       repo: https://github.com/firehol/netdata.git
-      dest: "{{ drn_install_dir }}"
+      dest: "{{ drn_sources_dir }}"
       version: "{{ drn_version }}"
       force: yes
     register: clone_or_pull
@@ -28,7 +27,7 @@
   - name: Build and install
     shell: "./netdata-installer.sh --install {{ drn_install_dir }} --dont-wait"
     args:
-      chdir: "{{ drn_install_dir }}"
+      chdir: "{{ drn_sources_dir }}"
     when: clone_or_pull.changed == True
     notify: stop service
 
@@ -45,7 +44,7 @@
   # - meta: flush_handlers
 
   - name: Copy service file
-    command: cp {{ drn_install_dir }}/system/{{drn_service}}.service /etc/systemd/system/{{drn_service}}.service
+    command: cp {{ drn_sources_dir }}/system/{{drn_service}}.service /etc/systemd/system/{{drn_service}}.service
     # notify: start/restart netdata
 
   - block:

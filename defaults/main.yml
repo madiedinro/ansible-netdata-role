@@ -23,5 +23,6 @@ drn_allow_default:
 
 drn_binary: /usr/sbin/netdata
 drn_install_dir: /opt/netdata
+drn_sources_dir: "{{drn_install_dir}}/sources"
 drn_version: master
 drn_hostname: '{{inventory_hostname_short|default(inventory_hostname)}}'

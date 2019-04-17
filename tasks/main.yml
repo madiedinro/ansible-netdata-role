@@ -60,12 +60,13 @@
       name: "{{ drn_service }}"
     when: ansible_service_mgr == 'systemd'
     
-  when: drn_action is 'install'
+  when: drn_action == 'install'
   tags: netdata
 
 - block:
 
-  - systemd:
+  - name: disabling netdata service
+    systemd:
       state: stopped
       daemon_reload: yes
       enabled: no
@@ -76,7 +77,7 @@
   #     state: absent
 
 
-  when: drn_action is 'remove'
+  when: drn_action == 'remove'
   tags: netdata
   
 

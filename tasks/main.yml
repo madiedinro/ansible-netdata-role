@@ -1,5 +1,6 @@
 ---
 - block:
+
   - name: Check if present
     stat:
       path: "{{ drn_binary }}"
@@ -47,18 +48,37 @@
     command: cp {{ drn_sources_dir }}/system/{{drn_service}}.service /etc/systemd/system/{{drn_service}}.service
     # notify: start/restart netdata
 
-  - block:
-      - service:
-          name: "{{drn_service}}"
-          state: restarted
-          enabled: yes
-        when: ansible_service_mgr == 'upstart'
-      - systemd:
-          state: restarted
-          daemon_reload: yes
-          enabled: yes
-          name: "{{ drn_service }}"
-        when: ansible_service_mgr == 'systemd'
+  - service:
+      name: "{{drn_service}}"
+      state: restarted
+      enabled: yes
+    when: ansible_service_mgr == 'upstart'
+  - systemd:
+      state: restarted
+      daemon_reload: yes
+      enabled: yes
+      name: "{{ drn_service }}"
+    when: ansible_service_mgr == 'systemd'
+    
+  when: drn_action is 'install'
   tags: netdata
+
+- block:
+
+  - systemd:
+      state: stopped
+      daemon_reload: yes
+      enabled: no
+      name: "{{ drn_service }}"
+    when: ansible_service_mgr == 'systemd'
+  # - file:
+  #     path: "/etc/systemd/system/{{drn_service}}.service"
+  #     state: absent
+
+
+  when: drn_action is 'remove'
+  tags: netdata
+  
+
 
 

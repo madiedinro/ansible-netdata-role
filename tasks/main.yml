@@ -72,6 +72,7 @@
       enabled: no
       name: "{{ drn_service }}"
     when: ansible_service_mgr == 'systemd'
+    failed_when: False
   # - file:
   #     path: "/etc/systemd/system/{{drn_service}}.service"
   #     state: absent
